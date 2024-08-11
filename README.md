@@ -1,5 +1,7 @@
 ## Introduction
 
+This is C-FFi bindings for `smcrypto` crate.
+
 Build from source:
 
 ```
