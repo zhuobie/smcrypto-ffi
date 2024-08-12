@@ -32,6 +32,6 @@ jobs:
         name: smcrypto_ffi-${{ matrix.os }}
         path: |
           target/release/smcrypto_ffi.dll
-          target/release/smcrypto_ffi.so
-          target/release/smcrypto_ffi.dylib
+          target/release/libsmcrypto_ffi.so
+          target/release/libsmcrypto_ffi.dylib
         if-no-files-found: ignore
