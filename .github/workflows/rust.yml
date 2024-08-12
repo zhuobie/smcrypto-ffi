@@ -12,11 +12,26 @@ env:
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Build
       run: cargo build --release
+
     - name: Run tests
-      run: cargo test --verbose
+      run: cargo test --release
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: smcrypto_ffi-${{ matrix.os }}
+        path: |
+          target/release/smcrypto_ffi.dll
+          target/release/smcrypto_ffi.so
+          target/release/smcrypto_ffi.dylib
+        if-no-files-found: ignore
